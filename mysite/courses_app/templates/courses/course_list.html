@@ -1,0 +1,15 @@
+<h1>Список курсів</h1>
+<a href="{% url 'create_course' %}">Create new course</a>
+<ul>
+    {% for course in courses %}
+        <li>
+            <strong>{{ course.title }}</strong> — {{ course.description }}<br>
+            Members:
+            {% for m in course.members.all %}
+                {{ m.name }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                No members
+            {% endfor %}
+        </li>
+    {% endfor %}
+</ul>
